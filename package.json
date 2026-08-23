@@ -1,0 +1,21 @@
+{
+  "name": "tracekit",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @tracekit/web dev",
+    "app:dev": "pnpm --filter @tracekit/web tauri dev",
+    "build": "pnpm -r build",
+    "app:build": "pnpm --filter @tracekit/web tauri build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "build:wasm": "./packages/tracer-core/scripts/build-wasm.sh"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4",
+    "eslint": "^9.30.0",
+    "typescript-eslint": "^8.35.0"
+  }
+}

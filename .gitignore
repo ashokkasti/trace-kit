@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.local
+.DS_Store
+*.log
+.buildworkdir
+spike/
+apps/web/src-tauri/target/
+apps/web/src-tauri/gen/
