@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState } from "react";
 import { computeSvgStats, stripGeneratorComment } from "@tracekit/tracer-core";
+
+type CopyStatus = "idle" | "copying" | "copied" | "failed";
 
 interface StatsBarProps {
   svg: string | null;
@@ -15,6 +18,11 @@ function formatBytes(bytes: number): string {
 }
 
 export function StatsBar({ svg, durationMs, width, height, fileName }: StatsBarProps) {
+  const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
+  const resetTimer = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(resetTimer.current), []);
+
   if (!svg) return null;
   const clean = stripGeneratorComment(svg);
   const stats = computeSvgStats(clean);
@@ -32,8 +40,25 @@ export function StatsBar({ svg, durationMs, width, height, fileName }: StatsBarP
   };
 
   const copy = async () => {
-    await navigator.clipboard.writeText(clean);
+    window.clearTimeout(resetTimer.current);
+    setCopyStatus("copying");
+    try {
+      await navigator.clipboard.writeText(clean);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("failed");
+    }
+    resetTimer.current = window.setTimeout(() => setCopyStatus("idle"), 2000);
   };
+
+  const copyLabel =
+    copyStatus === "copying"
+      ? "Copying…"
+      : copyStatus === "copied"
+        ? "Copied ✓"
+        : copyStatus === "failed"
+          ? "Copy failed ✕"
+          : "Copy SVG";
 
   return (
     <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl bg-white px-4 py-2.5 text-xs ring-1 ring-neutral-200">
@@ -62,9 +87,16 @@ export function StatsBar({ svg, durationMs, width, height, fileName }: StatsBarP
         <button
           type="button"
           onClick={copy}
-          className="rounded-md border border-neutral-300 px-3 py-1.5 font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900"
+          disabled={copyStatus === "copying"}
+          className={`min-w-[7rem] rounded-md border px-3 py-1.5 font-medium transition-colors disabled:opacity-60 ${
+            copyStatus === "copied"
+              ? "border-emerald-600 bg-emerald-50 text-emerald-700"
+              : copyStatus === "failed"
+                ? "border-red-500 bg-red-50 text-red-600"
+                : "border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:text-neutral-900"
+          }`}
         >
-          Copy SVG
+          {copyLabel}
         </button>
         <button
           type="button"

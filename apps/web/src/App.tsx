@@ -61,6 +61,33 @@ export default function App() {
     [file, loadFile],
   );
 
+  const handleReset = useCallback(() => {
+    setFile((prev) => {
+      if (prev) URL.revokeObjectURL(prev.url);
+      return null;
+    });
+    setImageData(null);
+    setLoadError(null);
+  }, []);
+
+  const loadSample = useCallback(() => {
+    void (async () => {
+      try {
+        const res = await fetch("sample.png");
+        const blob = await res.blob();
+        void loadFile(blob, "sample.png", maxEdge);
+      } catch {
+        setLoadError("Could not load the sample image");
+      }
+    })();
+  }, [loadFile, maxEdge]);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).has("sample")) {
+      loadSample();
+    }
+  }, [loadSample]);
+
   const applyPreset = useCallback((id: string) => {
     const preset = PRESETS.find((p) => p.id === id);
     if (!preset) return;
@@ -94,7 +121,19 @@ export default function App() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          {file && <Dropzone onFile={handleFile} compact />}
+          {file && (
+            <>
+              <Dropzone onFile={handleFile} compact />
+              <button
+                type="button"
+                onClick={handleReset}
+                title="Clear image and start over"
+                className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:border-red-300 hover:bg-red-50"
+              >
+                Reset
+              </button>
+            </>
+          )}
           <span
             className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-700 ring-1 ring-emerald-200"
             title="Images are processed entirely in your browser"
@@ -123,7 +162,16 @@ export default function App() {
               </button>
             </div>
           ) : (
-            <Dropzone onFile={handleFile} />
+            <>
+              <Dropzone onFile={handleFile} />
+              <button
+                type="button"
+                onClick={loadSample}
+                className="text-sm font-medium text-indigo-600 underline-offset-4 transition-colors hover:text-indigo-500 hover:underline"
+              >
+                Or try it with a sample image →
+              </button>
+            </>
           )}
         </main>
       ) : (
