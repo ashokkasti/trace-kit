@@ -7,7 +7,7 @@
 **Free, private raster-to-SVG vectorization** — an Illustrator-style Image Trace that runs entirely on your device. Powered by the [VTracer](https://github.com/visioncortex/vtracer) engine compiled to WebAssembly. No uploads, no accounts, no watermarks, no tracking.
 
 <p align="center">
-  <img src="docs/screenshot.png" alt="TraceKit app screenshot" width="800" />
+  <img src="docs/screenshot.jpg" alt="TraceKit app screenshot" width="800" />
 </p>
 
 Works as a **browser app** and a **native macOS desktop app** (Windows/Linux builds possible via Tauri).
