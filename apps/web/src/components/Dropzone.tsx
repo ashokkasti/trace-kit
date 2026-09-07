@@ -73,12 +73,12 @@ export function Dropzone({ onFile, compact = false }: DropzoneProps) {
       onClick={() => inputRef.current?.click()}
       className={`flex h-72 w-full max-w-xl cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed p-8 text-center transition-colors ${
         dragging
-          ? "border-indigo-500 bg-indigo-50"
-          : "border-neutral-300 bg-white hover:border-indigo-400"
+          ? "border-brand-600 bg-brand-50"
+          : "border-neutral-300 bg-white hover:border-brand-300"
       }`}
     >
       <svg
-        className={`size-12 transition-colors ${dragging ? "text-indigo-500" : "text-neutral-300"}`}
+        className={`size-12 transition-colors ${dragging ? "text-brand-600" : "text-neutral-300"}`}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

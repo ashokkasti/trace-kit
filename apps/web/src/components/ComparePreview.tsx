@@ -31,7 +31,7 @@ export function ComparePreview({ originalUrl, svg, tracing }: ComparePreviewProp
             onChange={(e) => setSplit(Number(e.target.value))}
             className="w-48"
           />
-          <span className="text-indigo-600">Traced SVG</span>
+          <span className="text-brand-700">Traced SVG</span>
         </div>
         <button
           type="button"
@@ -70,8 +70,8 @@ export function ComparePreview({ originalUrl, svg, tracing }: ComparePreviewProp
           />
         )}
         {tracing && (
-          <div className="absolute top-3 right-3 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs text-indigo-600 shadow-sm ring-1 ring-indigo-200 backdrop-blur">
-            <span className="size-2 animate-ping rounded-full bg-indigo-500" />
+          <div className="absolute top-3 right-3 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs text-brand-700 shadow-sm ring-1 ring-brand-200 backdrop-blur">
+            <span className="size-2 animate-ping rounded-full bg-brand-600" />
             Tracing…
           </div>
         )}

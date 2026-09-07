@@ -101,7 +101,7 @@ export function StatsBar({ svg, durationMs, width, height, fileName }: StatsBarP
         <button
           type="button"
           onClick={download}
-          className="rounded-md bg-emerald-600 px-3 py-1.5 font-medium text-white transition-colors hover:bg-emerald-500"
+          className="rounded-md bg-brand-600 px-3 py-1.5 font-medium text-white transition-colors hover:bg-brand-700"
         >
           Download SVG
         </button>
