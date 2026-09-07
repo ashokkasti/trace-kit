@@ -39,7 +39,7 @@ export function ControlsPanel({
 }: ControlsPanelProps) {
   return (
     <div className="flex h-full flex-col gap-5 overflow-y-auto p-4">
-      <section className="space-y-2 rounded-xl bg-indigo-50 p-3 ring-1 ring-indigo-100">
+      <section className="space-y-2 rounded-lg bg-neutral-50 p-3 ring-1 ring-neutral-200">
         <SectionTitle>Simplification</SectionTitle>
         <Slider
           label={describeDetailLevel(detailLevel)}
@@ -65,7 +65,7 @@ export function ControlsPanel({
               onClick={() => onPreset(p.id)}
               className={`rounded-lg px-2 py-2 text-xs font-medium transition-colors ${
                 activePresetId === p.id
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-brand-600 text-white"
                   : activePresetId === null
                     ? "bg-neutral-100 text-neutral-700 ring-1 ring-neutral-200 hover:bg-neutral-200"
                     : "bg-neutral-50 text-neutral-500 ring-1 ring-neutral-200/70 hover:bg-neutral-100 hover:text-neutral-700"
@@ -77,7 +77,7 @@ export function ControlsPanel({
           <div
             className={`flex items-center justify-center rounded-lg px-2 py-2 text-xs font-medium ${
               activePresetId === null
-                ? "bg-indigo-100 text-indigo-700 ring-1 ring-indigo-300"
+                ? "bg-brand-50 text-brand-700 ring-1 ring-brand-200"
                 : "text-neutral-400"
             }`}
           >

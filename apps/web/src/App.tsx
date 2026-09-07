@@ -111,7 +111,7 @@ export default function App() {
     <div className="flex h-full flex-col">
       <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-5 py-3">
         <div className="flex items-center gap-2.5">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="size-6 text-indigo-600">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="size-6 text-brand-600">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
           </svg>
@@ -135,7 +135,7 @@ export default function App() {
             </>
           )}
           <span
-            className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-700 ring-1 ring-emerald-200"
+            className="rounded-md border border-neutral-200 px-2.5 py-1 text-[11px] font-medium text-neutral-500"
             title="Images are processed entirely in your browser"
           >
             100% private
@@ -167,7 +167,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={loadSample}
-                className="text-sm font-medium text-indigo-600 underline-offset-4 transition-colors hover:text-indigo-500 hover:underline"
+                className="text-sm font-medium text-brand-600 underline-offset-4 transition-colors hover:text-brand-700 hover:underline"
               >
                 Or try it with a sample image →
               </button>
@@ -204,7 +204,7 @@ export default function App() {
               ) : (
                 <div className="flex h-full items-center justify-center rounded-xl bg-white ring-1 ring-neutral-200">
                   {tracing ? (
-                    <span className="animate-pulse text-sm text-indigo-600">Tracing…</span>
+                    <span className="animate-pulse text-sm text-brand-600">Tracing…</span>
                   ) : (
                     <span className="text-sm text-neutral-400">Preparing…</span>
                   )}

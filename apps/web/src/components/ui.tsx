@@ -54,16 +54,16 @@ interface SegmentedProps<T extends string> {
 
 export function Segmented<T extends string>({ options, value, onChange }: SegmentedProps<T>) {
   return (
-    <div className="flex rounded-lg bg-neutral-100 p-0.5 ring-1 ring-neutral-200">
+    <div className="flex divide-x divide-neutral-200 overflow-hidden rounded-md ring-1 ring-neutral-200">
       {options.map((opt) => (
         <button
           key={opt.value}
           type="button"
           onClick={() => onChange(opt.value)}
-          className={`flex-1 rounded-md px-2 py-1.5 text-xs font-medium transition-colors ${
+          className={`flex-1 px-2 py-1.5 text-xs font-medium transition-colors ${
             value === opt.value
-              ? "bg-indigo-600 text-white shadow-sm"
-              : "text-neutral-500 hover:text-neutral-800"
+              ? "bg-brand-600 text-white"
+              : "bg-white text-neutral-500 hover:bg-neutral-50 hover:text-neutral-800"
           }`}
         >
           {opt.label}
@@ -89,7 +89,7 @@ export function Toggle({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="size-3.5 accent-indigo-600"
+        className="size-3.5 accent-brand-600"
       />
     </label>
   );
